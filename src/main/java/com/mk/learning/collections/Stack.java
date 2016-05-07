@@ -25,8 +25,10 @@ public class Stack<V> {
         if (first == null) throw new Exception("Stack empty");
         Node<V> toPop = first;
         first = first.next;
+        V item = toPop.item;
+        toPop = null;
         N--;
-        return toPop.item;
+        return item;
     }
 
     public int size() {
@@ -37,6 +39,5 @@ public class Stack<V> {
     private class Node<V> {
         V item;
         Node next;
-
     }
 }
