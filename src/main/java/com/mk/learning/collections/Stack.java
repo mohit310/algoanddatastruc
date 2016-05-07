@@ -9,21 +9,24 @@ public class Stack<V> {
     private int N;
 
     public void push(V item) {
-        Node lastFirst = first;
-        first = new Node();
-        first.item = item;
-        first.next = lastFirst;
+        Node n = new Node();
+        n.item = item;
+        if (first == null) {
+            first = n;
+        } else {
+            Node last = first;
+            first = n;
+            first.next = last;
+        }
         N++;
     }
 
-    public V pop() {
-        Node<V> lastFirst = first;
-        first = (lastFirst != null && lastFirst.next != null) ? lastFirst.next : null;
-        if (lastFirst != null) {
-            N--;
-            return lastFirst.item;
-        }
-        return null;
+    public V pop() throws Exception {
+        if (first == null) throw new Exception("Stack empty");
+        Node<V> toPop = first;
+        first = first.next;
+        N--;
+        return toPop.item;
     }
 
     public int size() {

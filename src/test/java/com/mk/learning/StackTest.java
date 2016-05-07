@@ -18,10 +18,16 @@ public class StackTest {
     }
 
     @Test
-    public void testPop() {
+    public void testPop() throws Exception {
         Stack<Integer> stack = new Stack<Integer>();
         stack.push(1);
         assertEquals(new Integer(1), stack.pop());
+    }
+
+    @Test(expected = Exception.class)
+    public void testEmptyStack() throws Exception {
+        Stack<Integer> stack = new Stack<Integer>();
+        stack.pop();
     }
 
     @Test
@@ -33,7 +39,7 @@ public class StackTest {
     }
 
     @Test
-    public void testMultiPop() {
+    public void testMultiPop() throws Exception{
         Stack<Integer> stack = new Stack<Integer>();
         for (int i = 1; i <= 5; i++)
             stack.push(i);
